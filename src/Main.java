@@ -12,9 +12,15 @@ import java.time.format.FormatStyle;
         String dateString = "2002-03-01T13:00:00Z";
         OffsetDateTime dateTime = parseDate(dateString);
 
+
         String fullFormatter = formatFull(dateTime);
         String mediumFormatter = formatMedium(dateTime);
         String shortFormatter = formatShort(dateTime);
+
+        DateTimeFormatter fullFormatter = formatFull();
+        DateTimeFormatter mediumFormatter = formatMedium();
+        DateTimeFormatter shortFormatter = formatShort();
+
 
         System.out.println("Full: " + fullFormatter);
         System.out.println("Med: " + mediumFormatter);
@@ -34,6 +40,22 @@ import java.time.format.FormatStyle;
     }
 
     public static OffsetDateTime parseDate(String dateString) {
+        return OffsetDateTime.parse(dateString);
+    }
+
+    private static DateTimeFormatter formatShort() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    }
+
+    private static DateTimeFormatter formatMedium() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    }
+
+    private static DateTimeFormatter formatFull() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssxxxxx");
+    }
+
+    static OffsetDateTime parseDate(String dateString) {
         return OffsetDateTime.parse(dateString);
     }
 }
