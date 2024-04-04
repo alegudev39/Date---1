@@ -5,26 +5,18 @@ import java.time.format.FormatStyle;
 //Crea un oggetto OffsetDateTime da questa stringa 2002-03-01T13:00:00Z
 //Formatta la data ottenuta in FULL, MEDIUM e SHORT
 //Stampa le varie versioni
-        public class Main {
-
+public class Main {
     public static void main(String[] args) {
 
         String dateString = "2002-03-01T13:00:00Z";
-        OffsetDateTime dateTime = parseDate(dateString);
+        // DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_TIME;
+        OffsetDateTime offsetDateTime = OffsetDateTime.parse(dateString);
 
+        System.out.println("offsetDateTime: " + offsetDateTime);
+        System.out.println("formatShort: " + formatShort(offsetDateTime));
+        System.out.println("formatMedium: " + formatMedium(offsetDateTime));
+        System.out.println("formatFull: " + formatFull(offsetDateTime));
 
-        String fullFormatter = formatFull(dateTime);
-        String mediumFormatter = formatMedium(dateTime);
-        String shortFormatter = formatShort(dateTime);
-
-        DateTimeFormatter fullFormatter = formatFull();
-        DateTimeFormatter mediumFormatter = formatMedium();
-        DateTimeFormatter shortFormatter = formatShort();
-
-
-        System.out.println("Full: " + fullFormatter);
-        System.out.println("Med: " + mediumFormatter);
-        System.out.println("Short: " + shortFormatter);
     }
 
     public static String formatShort(OffsetDateTime dateTime) {
@@ -39,23 +31,4 @@ import java.time.format.FormatStyle;
         return dateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
 
-    public static OffsetDateTime parseDate(String dateString) {
-        return OffsetDateTime.parse(dateString);
-    }
-
-    private static DateTimeFormatter formatShort() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    }
-
-    private static DateTimeFormatter formatMedium() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    }
-
-    private static DateTimeFormatter formatFull() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssxxxxx");
-    }
-
-    static OffsetDateTime parseDate(String dateString) {
-        return OffsetDateTime.parse(dateString);
-    }
 }
